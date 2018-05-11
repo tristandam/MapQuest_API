@@ -12,6 +12,7 @@ import urllib.request
 
 MAPQUEST_API_KEY = 'LavK4KKvuP4NEHf7h8VWTq8oGLakIFmA'
 base_mapquest_url = "http://open.mapquestapi.com/directions/v2"
+base_elevation_url = "http://open.mapquestapi.com/elevation/v1"
 
 
 
@@ -60,6 +61,9 @@ def build_url(list_of_locations:list)->str:
 
     return base_mapquest_url + '/route?' + urllib.parse.urlencode(query_parameters)
 
+def build_elevation_url(lat_long_pairs:list)->str:
+    'Takes the base url, adds the necessary latitude longitude pairs to construct an elevation url'
+
 def parse_url(page_url:str)-> dict:
     'Takes a url and returns a python dictionary representing the parsed JSON response'
     response = None
@@ -72,4 +76,14 @@ def parse_url(page_url:str)-> dict:
     finally:
         if response != None:
             response.close()
+
+def lat_long_list(json_dict:dict)->list:
+    'Given a dictionary, returns a string of latitude longitude pairs needed for elevation output'
+    lat_long_str = ''
+    for location in json_dict["route"]["locations"]:
+        lat = location['displayLatLng']['lat']
+        lng = location['displayLatLng']['lng']
+        lat_long_str += str(lat) + ","
+        lat_long_str += str(lng) + ","
+    return lat_long_str
 

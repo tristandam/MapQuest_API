@@ -6,30 +6,59 @@
 
 class Distance:
     'Prints the Total Distance of the Trip'
-    def __init__(self,obj:dict): -> None:
+    def __init__(self,obj:dict) -> None:
         self._distance = int(round(obj['route']['distance']))
 
-    def output(self):
+    def output(self) -> None:
         print("TOTAL DISTANCE: {} miles".format(self._distance))
         print()
 
 class Time:
     "Prints the Total Time of the Trip"
-    def __init__(self,obj:dict): -> None:
+    def __init__(self,obj:dict) -> None:
         self._time = int(round(obj['route']['time'])/60)
 
-    def output(self):
+    def output(self) -> None:
         print("TOTAL TIME: {} minutes".format(self._time))
         print()
 
-def Directions:
+class Directions:
     "Prints directions for the trip"
     def __init__(self, obj:dict)-> None:
         self._dict_to_print = obj
 
-    def output(self):
+    def output(self) -> None:
+        print("DIRECTIONS")
         for leg in self._obj["route"]["legs"]:
-            for item in (leg["maneuvers"]):
-                print(item['narrative'])
+            for maneuver in (leg["maneuvers"]):
+                print(maneuver['narrative'])
         print()
+
+class Lat_Long:
+    "Prints Latitudes and Longitudes for the trip"
+    def __init__(self, obj:dict) -> None:
+        self.dict = obj
+
+    def output(self):
+        print("LATLONGS")
+        for location in self.dict["route"]["locations"]:
+            lat = location['displayLatLng']['lat']
+            lng = location['displayLatLng']['lng']
+            if lat > 0:
+                lat = str(round(lat, 2))
+                lat += "N"
+            else:
+                lat = str(abs(round(lat, 2)))
+                lat += "S"
+            if lng > 0:
+                lng = str(round(lng, 2))
+                lng += "E"
+            else:
+                lng = str(abs(round(lng, 2)))
+                lng += "W"
+            print(lat, lng)
+        print()
+
+class Elevation:
+
 
