@@ -1,8 +1,8 @@
-#mapquest_api.py
 
 
-#A module that interacts with the Open MapQuest APIs.
-# This is where you should do things like building URLs, making HTTP requests, and parsing JSON responses.
+
+# This is the module of my program that interacts with the MapQuest API.
+# Here, I build my URL using my API key, use that URL to make an HTTP request from which I store the data in JSON format.
 
 
 import json
