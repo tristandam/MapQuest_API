@@ -1,8 +1,4 @@
-#user_interface.py
-
-# A module that reads the input and constructs the objects that will generate the program's output. '
-#'This is the only module that should have an if __name__ == '__main__' block to make it executable;
-# you would execute this module to run your program.
+# This module is where the user inputs the locations of interest, and recieves the output handled by the output module.
 
 import mapquest_api
 
